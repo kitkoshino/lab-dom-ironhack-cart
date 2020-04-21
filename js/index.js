@@ -60,41 +60,22 @@ function createProduct() {
   const $newProductPrice = document.getElementById('new-price').value;
 
   const $tbodyTable = document.getElementsByTagName('tbody')[0];
-  const $currentRow = $tbodyTable.insertRow(); //cria nova linha
+  const $tr = document.createElement('tr');
+  $tr.setAttribute('class', 'product');
 
-  $currentRow.setAttribute('class', 'product');
+  $tr.innerHTML = `<td class="name">
+  <span>${$newProductName}</span>
+  </td>
+  <td class="price">$<span>${$newProductPrice}</span></td>
+  <td class="quantity">
+    <input type="number" value="0" min="0" placeholder="Quantity" />
+  </td>
+  <td class="subtotal">$<span>0</span></td>
+  <td class="action">
+    <button class="btn btn-remove">Remove</button>
+  </td>`;
 
-  // CELULA NOME
-  const $nameCell = $currentRow.insertCell(); //cria nova coluna
-  $nameCell.setAttribute('class', 'name');
-  $nameCell.innerHTML = `$<span>${$newProductName}</span>`;
-
-  // CELULA PRECO
-  const $priceCell = $currentRow.insertCell(); //cria nova coluna
-  $priceCell.setAttribute('class', 'price');
-  $priceCell.innerHTML = `$<span>${$newProductPrice}</span>`;
-
-  // CELULA QTDADE
-  /* const $inputQtd = document.createElement('input'); //Cria um elemento input
-  $inputQtd.setAttribute('type', 'number');
-  $inputQtd.setAttribute('value', '0');
-  $inputQtd.setAttribute('min', '0');
-  $inputQtd.setAttribute('placeholder', 'Quantity'); */
-
-  const $quantityCell = $currentRow.insertCell();
-  $quantityCell.setAttribute('class', 'quantity');
-  $quantityCell.innerHTML = `<input type="number" value="0" min="0" placeholder="Quantity" />`;
-  // $quantityCell.appendChild($inputQtd); // Para adicionar um elemento
-
-  // CELULA SUBTOTAL
-  const $subtotalCell = $currentRow.insertCell();
-  $subtotalCell.setAttribute('class', 'subtotal');
-  $subtotalCell.innerHTML = '$<span>0</span>';
-
-  // CELULA BTN REMOVE
-  const $removeCell = $currentRow.insertCell();
-  $removeCell.setAttribute('class', 'action');
-  $removeCell.innerHTML = '<button class="btn btn-remove">Remove</button>'
+  $tbodyTable.appendChild($tr);
 }
 
 window.addEventListener('load', () => {
